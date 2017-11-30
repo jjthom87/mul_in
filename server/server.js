@@ -28,7 +28,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
 //middleware that connects your imported routes to the routes of your application
 app.use('/', routes);
 //middleware that connects your static files(html,css,front end js)
-app.use(express.static('./client'));
+app.use(express.static('./app/client'));
 
 //you use this kind of route when pushing to heroku
 var PORT = process.env.PORT || 8000;
