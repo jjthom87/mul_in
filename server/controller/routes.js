@@ -5,10 +5,11 @@ var fs = require('fs');
 
 var storage = multer.diskStorage({
     destination: function(req, file, callback){
-        callback(null, './app/client/public/uploaded_images'); // set the destination
+    	console.log(req)
+        callback(null, './app/client/public/uploaded_images');
     },
     filename: function(req, file, callback){
-        callback(null, file.originalname); // set the file name and extension
+        callback(null, file.originalname);
     }
 });
 var upload = multer({storage: storage});
@@ -19,7 +20,7 @@ router.get('/', function(req,res){
 	res.sendFile(path.join(__dirname, '../../app/client/public/index.html'));
 });
 
-router.post('/fileupload', upload.single('myFile'), (req,res) => {
+router.post('/fileupload/:name', upload.single('myFile'), (req,res) => {
 	res.json({result: "Image Uploaded"})
 });
 
